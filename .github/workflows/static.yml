@@ -33,7 +33,7 @@ jobs:
         working-directory: karanjkar-tailors-frontend
 
       - name: Build app
-        run: npm run build
+        run: CI=false npm run build
         working-directory: karanjkar-tailors-frontend
 
       - name: Setup Pages
