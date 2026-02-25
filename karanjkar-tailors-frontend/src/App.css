@@ -1,0 +1,356 @@
+:root {
+  --app-bg: #f5f7fb;
+  --card-border: #e5eaf3;
+  --text-main: #1f2a37;
+  --text-muted: #6c7a90;
+  --card-bg: #ffffff;
+  --surface-bg: #f8fbff;
+  --header-bg: #ffffff;
+  --table-head-bg: #eef3ff;
+  --input-bg: #ffffff;
+  --input-border: #ced6e4;
+  --input-text: #1f2a37;
+}
+
+html[data-theme="dark"] {
+  --app-bg: #0f1724;
+  --card-border: #28364c;
+  --text-main: #e8eefb;
+  --text-muted: #a9b8d0;
+  --card-bg: #152033;
+  --surface-bg: #111b2b;
+  --header-bg: #162338;
+  --table-head-bg: #1b2a41;
+  --input-bg: #1a2740;
+  --input-border: #324668;
+  --input-text: #e8eefb;
+}
+
+.auth-wrap {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 10% 18%, rgba(59, 130, 246, 0.14) 0, rgba(59, 130, 246, 0) 40%),
+    radial-gradient(circle at 85% 12%, rgba(16, 185, 129, 0.14) 0, rgba(16, 185, 129, 0) 42%),
+    linear-gradient(180deg, #f3f8ff 0%, #eaf1fb 100%);
+  padding: 1rem;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 460px;
+  border: 1px solid #d9e5f5;
+  border-radius: 1.1rem;
+  background: #ffffff;
+  box-shadow: 0 18px 40px rgba(28, 58, 102, 0.12);
+}
+
+.auth-card .app-title {
+  color: #122238;
+}
+
+.auth-card .text-muted {
+  color: #5f718d !important;
+}
+
+.auth-card .form-label {
+  color: #1f2f45;
+}
+
+.auth-card .form-control {
+  background: #ffffff;
+  border-color: #c9d7eb;
+  color: #1f2f45;
+}
+
+.auth-card .form-control::placeholder {
+  color: #8a9cb8;
+  opacity: 1;
+}
+
+.auth-card .form-control:focus {
+  background: #ffffff;
+  border-color: #9bc2ff;
+  color: #1f2f45;
+  box-shadow: 0 0 0 0.2rem rgba(114, 169, 255, 0.24);
+}
+
+.auth-card .btn-primary {
+  background: linear-gradient(90deg, #1d7de8 0%, #1da0f2 100%);
+  border: none;
+  font-weight: 600;
+}
+
+.auth-card .btn-primary:hover {
+  background: linear-gradient(90deg, #176fce 0%, #1690df 100%);
+}
+
+html[data-theme="dark"] .auth-wrap {
+  background:
+    radial-gradient(circle at 8% 18%, rgba(255, 143, 31, 0.2) 0, rgba(255, 143, 31, 0) 34%),
+    radial-gradient(circle at 82% 14%, rgba(0, 153, 255, 0.2) 0, rgba(0, 153, 255, 0) 36%),
+    radial-gradient(circle at 50% 120%, rgba(7, 115, 87, 0.2) 0, rgba(7, 115, 87, 0) 44%),
+    linear-gradient(160deg, #0b1b2b 0%, #13263e 44%, #1b3554 100%);
+}
+
+html[data-theme="dark"] .auth-card {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(14, 29, 47, 0.78);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 24px 50px rgba(5, 12, 24, 0.42);
+}
+
+html[data-theme="dark"] .auth-card .app-title {
+  color: #f7fbff;
+}
+
+html[data-theme="dark"] .auth-card .text-muted {
+  color: #c5d4ea !important;
+}
+
+html[data-theme="dark"] .auth-card .form-label {
+  color: #eef5ff;
+}
+
+html[data-theme="dark"] .auth-card .form-control {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .auth-card .form-control::placeholder {
+  color: #d8e4f6;
+}
+
+html[data-theme="dark"] .auth-card .form-control:focus {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.app-shell {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #eef3ff 0%, var(--app-bg) 100%);
+  color: var(--text-main);
+}
+
+html[data-theme="dark"] .app-shell {
+  background: linear-gradient(180deg, #0e1624 0%, var(--app-bg) 100%);
+}
+
+.app-title {
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  margin-bottom: 0.35rem;
+}
+
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(9, 17, 30, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1025;
+  transition: opacity 0.2s ease;
+}
+
+.sidebar-backdrop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.admin-layout {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.admin-sidebar {
+  position: sticky;
+  top: 1rem;
+  overflow: hidden;
+}
+
+.admin-sidebar-head {
+  padding: 1rem 1rem 0.7rem;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.admin-nav-link {
+  text-decoration: none;
+  transition: transform 0.15s ease;
+}
+
+.admin-nav-link:hover {
+  transform: translateY(-1px);
+}
+
+.admin-nav-link.active {
+  background-color: var(--bs-primary-bg-subtle);
+  border-color: var(--bs-primary-border-subtle);
+  color: var(--bs-primary-text-emphasis);
+}
+
+html[data-theme="dark"] .admin-nav-link {
+  color: #f3f7ff !important;
+  border-color: #5f7397 !important;
+  background-color: #1a2840;
+}
+
+html[data-theme="dark"] .admin-nav-link .small {
+  color: #d4e0f5 !important;
+  opacity: 1 !important;
+}
+
+html[data-theme="dark"] .admin-nav-link.active {
+  color: #ffffff !important;
+  border-color: #8eb8ff !important;
+  background-color: #254a84;
+}
+
+.admin-main {
+  min-width: 0;
+}
+
+.sidebar-toggle {
+  width: fit-content;
+}
+
+.section-card {
+  border-color: var(--card-border);
+  border-radius: var(--bs-border-radius-xl);
+  background: var(--card-bg);
+  color: var(--text-main);
+}
+
+.section-card .card-title {
+  font-weight: 600;
+}
+
+.table > :not(caption) > * > * {
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+
+.metric-card {
+  min-height: 132px;
+}
+
+.metric-label {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.metric-value {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.metric-sub {
+  margin-top: 0.35rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+html[data-theme="dark"] .text-muted {
+  color: var(--text-muted) !important;
+}
+
+html[data-theme="dark"] .table {
+  --bs-table-bg: transparent;
+  --bs-table-color: var(--text-main);
+  --bs-table-border-color: var(--card-border);
+}
+
+html[data-theme="dark"] .table-light,
+html[data-theme="dark"] .table > :not(caption) > * > .table-light {
+  --bs-table-bg: var(--table-head-bg);
+  --bs-table-color: var(--text-main);
+}
+
+html[data-theme="dark"] .form-control,
+html[data-theme="dark"] .form-select {
+  background-color: var(--input-bg);
+  border-color: var(--input-border);
+  color: var(--input-text);
+}
+
+html[data-theme="dark"] .form-control::placeholder {
+  color: #c6d3ea;
+  opacity: 1;
+}
+
+html[data-theme="dark"] .form-control:focus,
+html[data-theme="dark"] .form-select:focus {
+  background-color: var(--input-bg);
+  color: var(--input-text);
+}
+
+html[data-theme="dark"] .btn-outline-primary,
+html[data-theme="dark"] .btn-outline-secondary,
+html[data-theme="dark"] .btn-outline-danger {
+  border-color: #5d78a6;
+  color: #dbe7ff;
+}
+
+html[data-theme="dark"] .badge.text-bg-light {
+  background-color: #22314a !important;
+  color: #d7e4ff !important;
+}
+
+.billing-settings-card {
+  background: var(--surface-bg);
+  border-color: var(--card-border) !important;
+}
+
+.billing-stat-box {
+  background: var(--surface-bg);
+  border-color: var(--card-border) !important;
+}
+
+html[data-theme="dark"] .billing-settings-card,
+html[data-theme="dark"] .billing-settings-card .card-body,
+html[data-theme="dark"] .billing-settings-card .form-label,
+html[data-theme="dark"] .billing-settings-card .card-title,
+html[data-theme="dark"] .billing-settings-card h6,
+html[data-theme="dark"] .billing-stat-box,
+html[data-theme="dark"] .billing-stat-box strong,
+html[data-theme="dark"] .billing-stat-box small {
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .form-text {
+  color: var(--text-muted) !important;
+}
+
+html[data-theme="dark"] .form-check-label {
+  color: var(--text-main);
+}
+
+@media (max-width: 767.98px) {
+  .admin-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: min(84vw, 320px);
+    border-radius: 0;
+    z-index: 1030;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+
+  .admin-sidebar.open {
+    transform: translateX(0);
+  }
+}
