@@ -35,6 +35,8 @@ jobs:
       - name: Build app
         run: CI=false npm run build
         working-directory: karanjkar-tailors-frontend
+        env:
+          REACT_APP_API_BASE_URL: https://karanjkartailors-production.up.railway.app
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
