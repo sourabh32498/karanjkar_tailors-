@@ -56,6 +56,52 @@ app.use((err, req, res, next) => {
   next();
 });
 
+async function ensureCoreTables() {
+  await db.promise().query(`
+    CREATE TABLE IF NOT EXISTS customers (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      name VARCHAR(120) NOT NULL,
+      phone VARCHAR(30) NOT NULL,
+      address TEXT NOT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+
+  await db.promise().query(`
+    CREATE TABLE IF NOT EXISTS measurements (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      customer_id INT NOT NULL,
+      chest DECIMAL(10,2) NOT NULL,
+      waist DECIMAL(10,2) NOT NULL,
+      shoulder DECIMAL(10,2) NOT NULL,
+      length DECIMAL(10,2) NOT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      CONSTRAINT fk_measurements_customer
+        FOREIGN KEY (customer_id) REFERENCES customers(id)
+        ON DELETE CASCADE
+    )
+  `);
+
+  await db.promise().query(`
+    CREATE TABLE IF NOT EXISTS orders (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      customer_id INT NOT NULL,
+      dress_type VARCHAR(120) NOT NULL,
+      price DECIMAL(10,2) NOT NULL,
+      paid_amount DECIMAL(10,2) NOT NULL DEFAULT 0,
+      trial_date DATE NULL,
+      delivery_date DATE NOT NULL,
+      status VARCHAR(30) NOT NULL DEFAULT 'Pending',
+      payment_mode VARCHAR(30) NULL,
+      payment_date DATE NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      CONSTRAINT fk_orders_customer
+        FOREIGN KEY (customer_id) REFERENCES customers(id)
+        ON DELETE CASCADE
+    )
+  `);
+}
+
 async function ensureOrdersPaymentColumns() {
   const checks = [
     {
@@ -88,6 +134,7 @@ async function ensureOrdersPaymentColumns() {
 async function start() {
   try {
     await db.promise().query("SELECT 1");
+    await ensureCoreTables();
     await ensureOrdersPaymentColumns();
     console.log("MySQL Connected");
     app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));
